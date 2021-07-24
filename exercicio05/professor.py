@@ -6,7 +6,7 @@ class Professor(Funcionario):
         super().__init__(departamento, cpf, dias_de_emprestimo=20)        
 
     def emprestar(self, titulo_livro: str):
-        return f"Professor do departamento \"{self.departamento}\" pegou emprestado o livro: {titulo_livro} com {self.dias_de_emprestimo} dias de prazo"
+        return f"Professor " + super().emprestar(titulo_livro)
 
     def devolver(self, titulo_livro: str):
-        return f"Professor do departamento \"{self.departamento}\" devolveu o livro: {titulo_livro}"
+        return f"Professor " + super().devolver(titulo_livro)

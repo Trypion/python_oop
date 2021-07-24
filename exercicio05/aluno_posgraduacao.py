@@ -17,4 +17,4 @@ class AlunoPosGraduacao(Aluno):
         self.__elaborando_tese = elaborando_tese        
 
     def emprestar(self, titulo_livro: str):
-        return f"Aluno de matricula \"{self.matricula}\" pegou emprestado o livro: {titulo_livro} com {self.dias_de_emprestimo} dias de prazo"
+        return super().emprestar(titulo_livro)

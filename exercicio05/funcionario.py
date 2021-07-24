@@ -15,11 +15,9 @@ class Funcionario(UsuarioBU):
     @departamento.setter
     def departamento(self, departamento: str):
         self.__departamento = departamento
-  
-    @abstractmethod
+
     def emprestar(self, titulo_livro: str):
         return f"do departamento \"{self.departamento}\" pegou emprestado o livro: {titulo_livro} com {self.dias_de_emprestimo} dias de prazo"
-    
-    @abstractmethod
+
     def devolver(self, titulo_livro: str):
-        return super().devolver(titulo_livro)
+        return f"do departamento \"{self.departamento}\" devolveu o livro: {titulo_livro}"
