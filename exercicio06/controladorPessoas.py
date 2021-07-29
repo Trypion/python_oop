@@ -17,22 +17,24 @@ class ControladorPessoas(AbstractControladorPessoas):
         return self.__tecnicos
 
     def inclui_cliente(self, codigo: int, nome: str) -> Cliente:
-        cliente = Cliente(nome, codigo)
-        if not self.__verifica_duplicada(self.__clientes, codigo):
-            self.__clientes.append(cliente)  
-        return cliente
+        if (isinstance(codigo, int) and isinstance(nome, str)):
+            cliente = Cliente(nome, codigo)
+            if not self.__verifica_duplicada(self.__clientes, codigo):
+                self.__clientes.append(cliente)
+            return cliente
 
     def inclui_tecnico(self, codigo: int, nome: str) -> Tecnico:
-        tecnico = Tecnico(nome, codigo)
-        if not self.__verifica_duplicada(self.__tecnicos, codigo):
-            self.__tecnicos.append(tecnico)  
-        return tecnico
+        if (isinstance(codigo, int) and isinstance(nome, str)):
+            tecnico = Tecnico(nome, codigo)
+            if not self.__verifica_duplicada(self.__tecnicos, codigo):
+                self.__tecnicos.append(tecnico)
+            return tecnico
 
     def __verifica_duplicada(self, lista, codigo):
         encontrado = False
         for item in lista:
             if item.codigo == codigo:
                 encontrado = True
-                break   
+                break
 
         return encontrado

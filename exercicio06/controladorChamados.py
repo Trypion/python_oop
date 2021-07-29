@@ -12,31 +12,48 @@ class ControladorChamados(AbstractControladorChamados):
         self.__tipos_chamados = []
 
     def total_chamados_por_tipo(self, tipo: TipoChamado) -> int:
-        return len([item for item in self.__chamados if item.tipo.codigo == tipo.codigo])
+        return len([item for item in self.__chamados
+                    if item.tipo.codigo == tipo.codigo])
 
-    def inclui_chamado(self, data: Date, cliente: Cliente, tecnico: Tecnico, titulo: str, descricao: str, prioridade: int, tipo: TipoChamado) -> Chamado:
-        if (isinstance(data, Date) and isinstance(cliente, Cliente) and isinstance(titulo, str) and isinstance(descricao, str) and isinstance(prioridade, int) and isinstance(tipo, TipoChamado)):
+    def inclui_chamado(self, data: Date, cliente: Cliente,
+                       tecnico: Tecnico, titulo: str,
+                       descricao: str, prioridade: int,
+                       tipo: TipoChamado) -> Chamado:
+
+        if (isinstance(data, Date) and
+            isinstance(cliente, Cliente) and
+            isinstance(titulo, str) and
+            isinstance(tecnico, Tecnico) and
+            isinstance(descricao, str) and
+            isinstance(prioridade, int) and
+                isinstance(tipo, TipoChamado)):
             chamado = Chamado(data, cliente, tecnico, titulo,
-                            descricao, prioridade, tipo)
+                              descricao, prioridade, tipo)
 
             duplicado = False
             for item in self.__chamados:
-                if (item.data == data or item.cliente.codigo == cliente.codigo or item.tecnico.codigo == tecnico.codigo or item.tipo.codigo == tipo.codigo):
+                if (item.data == data and
+                    item.cliente.codigo == cliente.codigo and
+                    item.tecnico.codigo == tecnico.codigo and
+                        item.tipo.codigo == tipo.codigo):
                     duplicado = True
                     break
 
             if not duplicado:
                 self.__chamados.append(chamado)
 
-            return chamado        
+            return chamado
 
-    def inclui_tipochamado(self, codigo: int, nome: str, descricao: str) -> TipoChamado:
-        if (isinstance(codigo, int) and isinstance(nome, str), isinstance(descricao, str)):
+    def inclui_tipochamado(self, codigo: int, nome: str,
+                           descricao: str) -> TipoChamado:
+        if (isinstance(codigo, int) and
+            isinstance(nome, str) and
+                isinstance(descricao, str)):
             tipo = TipoChamado(codigo, descricao, nome)
             if not self.__verifica_duplicada(self.__tipos_chamados, codigo):
                 self.__tipos_chamados.append(tipo)
 
-            return tipo        
+            return tipo
 
     @property
     def tipos_chamados(self):
